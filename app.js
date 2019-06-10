@@ -5,14 +5,12 @@ const express = require("express"),
 	  methodOverride=require("method-override"),
 	  expressSanitizer=require("express-sanitizer"),
 	  dotenv = require('dotenv');
-const aws = require('aws-sdk');
-let s3 = new aws.S3({
-  password: process.env.PASSWORD
-});
+
+
 dotenv.config();	
 //App Config	
 //mongoose.connect("mongodb://localhost/blog_app", {useNewUrlParser: true});
-//const password=process.env.PASSWORD;
+const password=process.env.PASSWORD;
 mongoose.connect("mongodb+srv://user_rev:"+password+"@cluster0-crjfc.mongodb.net/test?retryWrites=true&w=majority",{
 	useNewUrlParser: true,
 	useCreateIndex:true
@@ -115,6 +113,12 @@ app.delete("/blogs/:id", (req,res)=>{
 });
 
 
-app.listen(process.env.PORT || 3000,()=>{
-	console.log("Server running");
+// app.listen(process.env.PORT || 3000,()=>{
+// 	console.log("Server running");
+// });
+
+var server_port = process.env.PORT || 3000;
+var server_host = '0.0.0.0';
+app.listen(server_port, server_host, function() {
+    console.log('Listening on port %d', server_port);
 });
