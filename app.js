@@ -6,7 +6,18 @@ const express = require("express"),
 	  expressSanitizer=require("express-sanitizer");
 		
 //App Config	
-mongoose.connect("mongodb://localhost/blog_app", {useNewUrlParser: true});
+//mongoose.connect("mongodb://localhost/blog_app", {useNewUrlParser: true});
+
+mongoose.connect("mongodb+srv://user_rev:process.env.password@cluster0-crjfc.mongodb.net/test?retryWrites=true&w=majority",{
+	useNewUrlParser: true,
+	useCreateIndex:true
+}).then(()=>{
+	console.log("Connected to DB");
+}).catch(err=>{
+	console.log(err.message);
+});
+
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
