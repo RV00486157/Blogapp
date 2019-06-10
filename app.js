@@ -5,11 +5,14 @@ const express = require("express"),
 	  methodOverride=require("method-override"),
 	  expressSanitizer=require("express-sanitizer"),
 	  dotenv = require('dotenv');
-
+const aws = require('aws-sdk');
+let s3 = new aws.S3({
+  password: process.env.PASSWORD
+});
 dotenv.config();	
 //App Config	
 //mongoose.connect("mongodb://localhost/blog_app", {useNewUrlParser: true});
-const password=process.env.PASSWORD;
+//const password=process.env.PASSWORD;
 mongoose.connect("mongodb+srv://user_rev:"+password+"@cluster0-crjfc.mongodb.net/test?retryWrites=true&w=majority",{
 	useNewUrlParser: true,
 	useCreateIndex:true
