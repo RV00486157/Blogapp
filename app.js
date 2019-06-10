@@ -3,12 +3,14 @@ const express = require("express"),
 	  mongoose = require("mongoose"),
 	  bodyParser = require("body-parser"),
 	  methodOverride=require("method-override"),
-	  expressSanitizer=require("express-sanitizer");
-		
+	  expressSanitizer=require("express-sanitizer"),
+	  dotenv = require('dotenv');
+
+dotenv.config();	
 //App Config	
 //mongoose.connect("mongodb://localhost/blog_app", {useNewUrlParser: true});
-
-mongoose.connect("mongodb+srv://user_rev:process.env.password@cluster0-crjfc.mongodb.net/test?retryWrites=true&w=majority",{
+const password=process.env.PASSWORD;
+mongoose.connect("mongodb+srv://user_rev:"+password+"@cluster0-crjfc.mongodb.net/test?retryWrites=true&w=majority",{
 	useNewUrlParser: true,
 	useCreateIndex:true
 }).then(()=>{
